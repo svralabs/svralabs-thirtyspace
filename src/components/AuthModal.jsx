@@ -1,148 +1,120 @@
-import { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from "react";
 
-const AuthModal = ({ isOpen, onClose }) => {
-  const [activeTab, setActiveTab] = useState('login');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [errors, setErrors] = useState({});
-  const modalRef = useRef(null);
+export default function AuthModal({ isOpen, open, onClose }) {
+  const isVisible = isOpen || open;
+  const [isLogin, setIsLogin] = useState(true);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
 
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
-    return () => {
-      document.body.style.overflow = 'auto';
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape" && onClose) onClose();
     };
-  }, [isOpen]);
-
-  const validateForm = () => {
-    const newErrors = {};
-    if (!email) newErrors.email = 'Email required';
-    if (!password) newErrors.password = 'Password required';
-    if (activeTab === 'register' && password !== confirmPassword) {
-      newErrors.confirmPassword = 'Passwords must match';
+    if (isVisible) {
+      window.addEventListener("keydown", handleKeyDown);
     }
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isVisible, onClose]);
+
+  if (!isVisible) return null;
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (validateForm()) {
-      console.log('Form submitted:', { email, password });
-      onClose();
-    }
+    alert(`Signed in successfully as ${email}! (Demo SVRALABS)`);
+    if (onClose) onClose();
   };
-
-  const handleKeyDown = (e) => {
-    if (e.key === 'Escape') {
-      onClose();
-    }
-  };
-
-  useEffect(() => {
-    if (isOpen) {
-      document.addEventListener('keydown', handleKeyDown);
-      return () => {
-        document.removeEventListener('keydown', handleKeyDown);
-      };
-    }
-  }, [isOpen]);
-
-  if (!isOpen) return null;
 
   return (
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
-      onClick={onClose}
-    >
-      <div
-        ref={modalRef}
-        className="relative bg-white p-8 rounded-lg shadow-lg border-4 border-black w-full max-w-md"
-        onClick={(e) => e.stopPropagation()}
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs">
+      <div 
+        className="w-full max-w-md border-4 border-black bg-white p-6 shadow-[10px_10px_0px_0px_rgba(0,0,0,1)] relative animate-in fade-in zoom-in duration-150"
       >
-        <div className="flex justify-between mb-6">
+        {/* Close Button */}
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 border-2 border-black bg-[#FF5C00] text-white w-8 h-8 flex items-center justify-center font-black text-sm shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-[#FF0055]"
+        >
+          ✕
+        </button>
+
+        {/* Modal Header */}
+        <div className="border-b-4 border-black pb-4 mb-6">
+          <div className="flex items-center gap-2">
+            <span className="w-6 h-6 border-2 border-black bg-[#FFE600] flex items-center justify-center font-black text-xs">30</span>
+            <h3 className="text-2xl font-black uppercase tracking-tight">ThirtySpace Auth</h3>
+          </div>
+          <p className="text-xs font-bold text-black/70 mt-1">Access your Neobrutalist Component Cloud</p>
+        </div>
+
+        {/* Tab Switcher */}
+        <div className="grid grid-cols-2 gap-2 mb-6 border-3 border-black p-1 bg-zinc-100">
           <button
-            className={`px-4 py-2 ${activeTab === 'login' ? 'bg-black text-white' : 'bg-gray-200'}`}
-            onClick={() => setActiveTab('login')}
+            onClick={() => setIsLogin(true)}
+            className={`py-2 font-black uppercase text-sm border-2 border-black transition-all ${
+              isLogin ? "bg-[#FFE600] shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]" : "bg-transparent border-transparent text-zinc-600"
+            }`}
           >
-            Login
+            Sign In
           </button>
           <button
-            className={`px-4 py-2 ${activeTab === 'register' ? 'bg-black text-white' : 'bg-gray-200'}`}
-            onClick={() => setActiveTab('register')}
+            onClick={() => setIsLogin(false)}
+            className={`py-2 font-black uppercase text-sm border-2 border-black transition-all ${
+              !isLogin ? "bg-[#FFE600] shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]" : "bg-transparent border-transparent text-zinc-600"
+            }`}
           >
             Register
           </button>
         </div>
 
-        <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
-            <input
-              type="email"
-              className={`w-full p-2 border-2 ${errors.email ? 'border-red-500' : 'border-black'}`}
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
-          </div>
-
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
-            <input
-              type="password"
-              className={`w-full p-2 border-2 ${errors.password ? 'border-red-500' : 'border-black'}`}
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            {errors.password && <p className="text-red-500 text-xs mt-1">{errors.password}</p>}
-          </div>
-
-          {activeTab === 'register' && (
-            <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700 mb-1">Confirm Password</label>
+        {/* Auth Form */}
+        <form onSubmit={handleSubmit} className="space-y-4">
+          {!isLogin && (
+            <div>
+              <label className="block text-xs font-black uppercase mb-1">Full Name</label>
               <input
-                type="password"
-                className={`w-full p-2 border-2 ${errors.confirmPassword ? 'border-red-500' : 'border-black'}`}
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
+                type="text"
+                required
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Svra Developer"
+                className="w-full border-3 border-black p-2.5 font-bold text-sm shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] focus:outline-none focus:bg-[#FFE600]/20"
               />
-              {errors.confirmPassword && (
-                <p className="text-red-500 text-xs mt-1">{errors.confirmPassword}</p>
-              )}
             </div>
           )}
 
+          <div>
+            <label className="block text-xs font-black uppercase mb-1">Email Address</label>
+            <input
+              type="email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="developer@svralabs.dev"
+              className="w-full border-3 border-black p-2.5 font-bold text-sm shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] focus:outline-none focus:bg-[#FFE600]/20"
+            />
+          </div>
+
+          <div>
+            <label className="block text-xs font-black uppercase mb-1">Password</label>
+            <input
+              type="password"
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="••••••••••••"
+              className="w-full border-3 border-black p-2.5 font-bold text-sm shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] focus:outline-none focus:bg-[#FFE600]/20"
+            />
+          </div>
+
           <button
             type="submit"
-            className="w-full bg-black text-white py-2 px-4 mb-4 border-2 border-black hover:bg-white hover:text-black transition-colors"
+            className="w-full border-3 border-black bg-[#00FF66] py-3 font-black uppercase tracking-wider text-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all mt-4"
           >
-            {activeTab === 'login' ? 'Login' : 'Register'}
+            {isLogin ? "Authenticate Now →" : "Create Developer Account →"}
           </button>
-
-          <div className="flex items-center mb-4">
-            <div className="flex-grow border-t-2 border-black"></div>
-            <span className="mx-2 text-sm text-gray-500">OR</span>
-            <div className="flex-grow border-t-2 border-black"></div>
-          </div>
-
-          <div className="flex justify-center space-x-4">
-            <button className="bg-black text-white py-2 px-4 border-2 border-black hover:bg-white hover:text-black transition-colors">
-              Google
-            </button>
-            <button className="bg-black text-white py-2 px-4 border-2 border-black hover:bg-white hover:text-black transition-colors">
-              Facebook
-            </button>
-          </div>
         </form>
       </div>
     </div>
   );
-};
-
-export default AuthModal;
+}
