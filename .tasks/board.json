@@ -1,0 +1,83 @@
+{
+  "project_name": "svralabs-thirtyspace",
+  "architecture_summary": "React SPA with neobrutalist design system. Four core surfaces: marketing hero, bento component showcase (buttons, badges, inputs, loaders, tables, sidebar), auth modal overlay, and App shell providing navigation between Hero and Components pages with modal trigger.",
+  "tickets": [
+    {
+      "id": "TASK-001",
+      "role": "frontend",
+      "model": "hermes-auto",
+      "title": "Hero & Features Page",
+      "description": "Build marketing landing page using thirtyspace_hero_section as primary reference. Neobrutalist style: thick black borders, hard drop shadows, bold typography, high-contrast accent blocks. Include hero headline, subheadline, dual CTA buttons (Get Started triggers auth modal via prop callback, View Components routes to /components), feature grid section highlighting design system pillars.",
+      "target_files": [
+        "src/pages/Hero.jsx"
+      ],
+      "acceptance_criteria": [
+        "Matches thirtyspace_hero_section layout and neobrutalist aesthetic",
+        "Accepts onOpenAuth prop to trigger AuthModal",
+        "Navigates to /components via react-router Link",
+        "Responsive: stacks on mobile, grid on desktop",
+        "No external UI library; pure Tailwind + inline styles"
+      ],
+      "status": "TODO"
+    },
+    {
+      "id": "TASK-002",
+      "role": "frontend",
+      "model": "hermes-auto",
+      "title": "Components Bento Showcase Page",
+      "description": "Single-page bento grid showcasing full component library. Reference screens: thirtyspace_button_showcase, thirtyspace_badge_showcase, thirtyspace_component_showcase_inputs, thirtyspace_loader_showcase, thirtyspace_table_showcase, thirtyspace_sidebar_showcase, thirtyspace_404_navigation_bento_variant. Sections: Buttons (primary/secondary/destructive/ghost variants + sizes), Badges (status/count/pill), Inputs (text/textarea/select/checkbox/radio), Loaders (spinner/dots/bar), Data Table (sortable header, striped rows, action column), Sidebar preview panel. Each section a bordered bento card with heading and live examples.",
+      "target_files": [
+        "src/pages/Components.jsx"
+      ],
+      "acceptance_criteria": [
+        "All six component categories rendered inline (no separate files)",
+        "Neobrutalist styling: 3-4px black borders, 6-8px offset hard shadows, no border-radius or minimal",
+        "Bento grid layout responsive (1 col mobile, 2-3 cols desktop)",
+        "Table has at least 4 sample rows with badges in status column",
+        "Loaders animate via CSS keyframes",
+        "Interactive states (hover, focus) visible on buttons and inputs"
+      ],
+      "status": "TODO"
+    },
+    {
+      "id": "TASK-003",
+      "role": "frontend",
+      "model": "hermes-auto",
+      "title": "Auth Modal (Login/Register)",
+      "description": "Overlay modal with tabbed Login/Register views based on thirtyspace_login_register_mobile. Controlled component: props open (bool), onClose (fn). Fixed backdrop, centered card with thick border and hard shadow. Tab toggle switches between Login (email + password) and Register (name + email + password + confirm). Submit handlers are stubs (console.log). Close on backdrop click and ESC key. Trap focus inside modal when open.",
+      "target_files": [
+        "src/components/AuthModal.jsx"
+      ],
+      "acceptance_criteria": [
+        "Renders nothing when open=false",
+        "Backdrop click and ESC key call onClose",
+        "Tab switching preserves separate form state per tab",
+        "Inputs use neobrutalist border+shadow style consistent with Components page",
+        "Submit button prevents default and logs form data",
+        "Accessible: role=dialog, aria-modal=true, aria-labelledby set"
+      ],
+      "status": "TODO"
+    },
+    {
+      "id": "TASK-004",
+      "role": "frontend",
+      "model": "hermes-auto",
+      "title": "App Shell with Navigation",
+      "description": "Root App component. Top navbar (neobrutalist: thick bottom border, logo left, nav links center, Login button right). Routes: / -> Hero, /components -> Components, * -> 404 page inline using thirtyspace_404_navigation_bento_variant style. Manages authModalOpen state; passes open callback to Hero and navbar Login button. Uses react-router-dom BrowserRouter.",
+      "target_files": [
+        "src/App.jsx"
+      ],
+      "acceptance_criteria": [
+        "BrowserRouter with three routes wired",
+        "Navbar visible on all routes with active-link styling",
+        "authModalOpen state lifted here; AuthModal rendered once at root",
+        "Login button in navbar and Hero CTA both open AuthModal",
+        "404 route renders inline neobrutalist not-found block with link back to /",
+        "Imports Hero, Components, AuthModal from correct paths"
+      ],
+      "status": "DONE"
+    }
+  ],
+  "status": "IN_PROGRESS",
+  "updated_at": "2026-08-20 02:01:12"
+}
