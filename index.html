@@ -4,22 +4,105 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ThirtySpace — Neobrutalist Component System</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>SVRALABS — Thirtyspace</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script>
       tailwind.config = {
+        darkMode: "class",
         theme: {
           extend: {
-            fontFamily: {
-              sans: ["Plus Jakarta Sans", "sans-serif"],
+            "colors": {
+                    "tertiary-fixed": "#86f3ff",
+                    "outline-variant": "#cfc6af",
+                    "on-tertiary-fixed": "#002023",
+                    "inverse-surface": "#343027",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed-dim": "#50d8e6",
+                    "error-container": "#ffdad6",
+                    "surface-tint": "#715c00",
+                    "on-surface": "#1e1b13",
+                    "secondary-fixed-dim": "#47d6ff",
+                    "tertiary": "#006971",
+                    "on-secondary-fixed-variant": "#004e60",
+                    "on-secondary-fixed": "#001f28",
+                    "inverse-on-surface": "#f8f0e2",
+                    "surface-variant": "#e9e2d4",
+                    "on-secondary-container": "#00566a",
+                    "on-primary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "background-alt": "#F4F4F4",
+                    "on-error": "#ffffff",
+                    "secondary": "#00677f",
+                    "on-primary-fixed-variant": "#554500",
+                    "outline": "#7e7763",
+                    "background": "#fff8ef",
+                    "secondary-container": "#00d2ff",
+                    "surface-container": "#f5eddf",
+                    "accent-orange": "#FF4B13",
+                    "surface-container-highest": "#e9e2d4",
+                    "surface-container-high": "#efe7da",
+                    "inverse-primary": "#e5c44b",
+                    "on-tertiary-fixed-variant": "#004f55",
+                    "on-primary-fixed": "#231b00",
+                    "error": "#ba1a1a",
+                    "primary-fixed": "#ffe17a",
+                    "accent-purple": "#7E30E1",
+                    "primary-fixed-dim": "#e5c44b",
+                    "tertiary-container": "#6df1ff",
+                    "surface-bright": "#fff8ef",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-dim": "#e0d9cc",
+                    "secondary-fixed": "#b6ebff",
+                    "primary-container": "#ffdc60",
+                    "primary": "#715c00",
+                    "surface": "#FFFFFF",
+                    "on-background": "#1e1b13",
+                    "on-primary-container": "#756000",
+                    "accent-pink": "#FFA2D2",
+                    "on-tertiary-container": "#006d75",
+                    "on-tertiary": "#ffffff",
+                    "on-surface-variant": "#4c4635",
+                    "surface-container-low": "#fbf3e5"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "md": "16px",
+                    "sm": "8px",
+                    "gutter": "16px",
+                    "xs": "4px",
+                    "xl": "48px",
+                    "margin": "24px",
+                    "lg": "24px"
+            },
+            "fontFamily": {
+                    "headline-main-mobile": ["Plus Jakarta Sans"],
+                    "headline-main": ["Plus Jakarta Sans, Inter, sans-serif"],
+                    "label-bold": ["Plus Jakarta Sans"],
+                    "heading-card": ["Plus Jakarta Sans, Inter, sans-serif"],
+                    "body-md": ["Inter, sans-serif"]
+            },
+            "fontSize": {
+                    "headline-main-mobile": ["40px", {"lineHeight": "1.1", "fontWeight": "800"}],
+                    "headline-main": ["3.5rem", {"lineHeight": "1.1", "letterSpacing": "-0.01em", "fontWeight": "800"}],
+                    "label-bold": ["14px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "heading-card": ["1.5rem", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "body-md": ["0.95rem", {"lineHeight": "1.5", "fontWeight": "400"}]
             }
-          }
-        }
-      }
+          },
+        },
+      };
     </script>
   </head>
-  <body class="bg-[#FDFBF7] text-black">
+  <body class="bg-background text-on-background min-h-screen">
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
