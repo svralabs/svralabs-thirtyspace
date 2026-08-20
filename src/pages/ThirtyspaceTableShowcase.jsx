@@ -303,8 +303,8 @@ export default function ThirtyspaceTableShowcase() {
 <div className="flex gap-lg">
 <a className="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy</a>
 <a className="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Terms</a>
-<a className="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Github</a>
-<a className="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Discord</a>
+<a className="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Globe</a>
+<a className="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Globe</a>
 </div>
 </footer>
 

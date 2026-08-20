@@ -127,8 +127,8 @@ export default function Thirtyspace404NavigationBentoVariant() {
         <div className="flex gap-lg">
             <a className="text-on-surface-variant text-sm font-body-md hover:text-primary transition-colors" href="#">Privacy</a>
             <a className="text-on-surface-variant text-sm font-body-md hover:text-primary transition-colors" href="#">Terms</a>
-            <a className="text-on-surface-variant text-sm font-body-md hover:text-primary transition-colors" href="#">Github</a>
-            <a className="text-on-surface-variant text-sm font-body-md hover:text-primary transition-colors" href="#">Discord</a>
+            <a className="text-on-surface-variant text-sm font-body-md hover:text-primary transition-colors" href="#">Globe</a>
+            <a className="text-on-surface-variant text-sm font-body-md hover:text-primary transition-colors" href="#">Globe</a>
         </div>
     </footer>
 

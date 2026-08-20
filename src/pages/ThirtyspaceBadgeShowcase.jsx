@@ -202,8 +202,8 @@ export default function ThirtyspaceBadgeShowcase() {
 <div className="flex gap-lg">
 <a className="text-on-surface-variant hover:text-accent-orange transition-colors" href="#">Privacy</a>
 <a className="text-on-surface-variant hover:text-accent-orange transition-colors" href="#">Terms</a>
-<a className="text-on-surface-variant hover:text-accent-orange transition-colors" href="#">Github</a>
-<a className="text-on-surface-variant hover:text-accent-orange transition-colors" href="#">Discord</a>
+<a className="text-on-surface-variant hover:text-accent-orange transition-colors" href="#">Globe</a>
+<a className="text-on-surface-variant hover:text-accent-orange transition-colors" href="#">Globe</a>
 </div>
 </footer>
 

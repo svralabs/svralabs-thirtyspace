@@ -138,8 +138,8 @@ export default function ThirtyspaceButtonShowcase() {
 <div className="flex gap-lg">
 <a className="text-on-surface-variant font-body-md hover:text-primary transition-colors" href="#">Privacy</a>
 <a className="text-on-surface-variant font-body-md hover:text-primary transition-colors" href="#">Terms</a>
-<a className="text-on-surface-variant font-body-md hover:text-primary transition-colors" href="#">Github</a>
-<a className="text-accent-purple font-bold font-body-md hover:text-primary transition-colors" href="#">Discord</a>
+<a className="text-on-surface-variant font-body-md hover:text-primary transition-colors" href="#">Globe</a>
+<a className="text-accent-purple font-bold font-body-md hover:text-primary transition-colors" href="#">Globe</a>
 </div>
 </footer>
 
